@@ -129,14 +129,14 @@ User's argument: "${message}"`;
     let feedback = "No feedback available.";
 
     // スコアを抽出
-    const scoreMatches = rawResponse.matchAll(/(Logical Consistency|Persuasiveness|Factual Accuracy|Structural Coherence|Rebuttal Resilience):\s*(\d)\/5/g);
+    const scoreMatches = Array.from(rawResponse.matchAll(/(Logical Consistency|Persuasiveness|Factual Accuracy|Structural Coherence|Rebuttal Resilience):\s*(\d)\/5/g));
     for (const match of scoreMatches) {
       const key = match[1] as keyof typeof scores;
-      scores[key] = parseInt(match[2]);
+      scores[key] = parseInt(match[2], 10);
     }
 
     // フィードバックを抽出
-    const feedbackMatch = rawResponse.match(/FEEDBACK:\s*(.+)/s);
+    const feedbackMatch = rawResponse.match(/FEEDBACK:\s*([\s\S]+)/);
     if (feedbackMatch) {
       feedback = feedbackMatch[1].trim();
     }
