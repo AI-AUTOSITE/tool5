@@ -1,15 +1,13 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // TypeScriptのビルドエラーを一時的に無視
   typescript: {
-    // ビルド時の型エラーを無視（一時的な対処）
     ignoreBuildErrors: true,
   },
+  // ESLintのビルドエラーを一時的に無視
   eslint: {
-    // ビルド時のESLintエラーを無視（一時的な対処）
     ignoreDuringBuilds: true,
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
